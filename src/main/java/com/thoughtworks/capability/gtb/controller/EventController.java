@@ -1,5 +1,6 @@
 package com.thoughtworks.capability.gtb.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thoughtworks.capability.gtb.vo.EventType;
 import com.thoughtworks.capability.gtb.vo.EventVo;
 import com.thoughtworks.capability.gtb.vo.UserVo;
@@ -20,10 +21,16 @@ public class EventController {
   public EventVo getEventById(@PathVariable("id") String id) {
     UserVo user = new UserVo("3", "张三");
     return new EventVo(id, "下载文件", EventType.DOWNLOAD, new Date(), user);
+//    EventVo event = new EventVo("1","下载内容","U","",user);
+//    ObjectMapper objectMapper = new ObjectMapper();
+//    String jsonOfEvent = objectMapper.writeValueAsString(event);
+//    System.out.println(jsonOfEvent);
   }
 
   @PostMapping("/events")
   public void createEvent(@RequestBody EventVo event) {
     log.info("create event: {}", event);
   }
+
+
 }
